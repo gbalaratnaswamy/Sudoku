@@ -8,9 +8,9 @@ import imutils
 
 img = cv2.imread('sudoku.png')
 
-# resizing the image can give any value
-img = imutils.resize(img, width=340)
-img = imutils.resize(img, height=440)
+# resizing the image can give any value  for now i'm commenting them 
+# img = imutils.resize(img, width=340)
+# img = imutils.resize(img, height=440)
 
 # finding the contours
 imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -81,12 +81,17 @@ cv2.circle(img,(bl_x , bl_y), 5, (0,0,255), -1)
 cv2.circle(img,(tr_x , tr_y), 5, (0,0,255), -1)
 cv2.circle(img,(tl_x , tl_y), 5, (0,0,255), -1)
 
- 
+
+# calculating the size of the sudoku in original image
+height_new = max(bl_y - tl_y,br_y - tr_y)
+width_new = max(tr_x - tl_x, br_x - bl_x)
+
+
 # for perspective wrapping of the the desired part of image
 pts1 = np.float32([[tl_x , tl_y],[tr_x , tr_y],[bl_x , bl_y],[br_x , br_y]])
-pts2 = np.float32([[0,0],[340,0],[0,440],[340,440]])
+pts2 = np.float32([[0,0],[width_new,0],[0,height_new],[width_new,height_new]])
 M = cv2.getPerspectiveTransform(pts1,pts2)
-dst = cv2.warpPerspective(img,M,(340,440))
+dst = cv2.warpPerspective(img,M,(width_new,height_new))
 
 
 # thresholding our wrapped image  
