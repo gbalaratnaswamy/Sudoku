@@ -28,8 +28,6 @@ def wrap(path):
             ctr_max_area = cv2.contourArea(ctr)
             ctr_max = ctr
 
-    # drawing the contours on the img
-    cv2.drawContours(img, [ctr_max], 0, (0, 255, 0), 3)
 
     # unwrapping our ctr_max contour
     b = np.array([ctr_max[:, 0]])
@@ -73,11 +71,7 @@ def wrap(path):
             arr.append(i)
     bl_x, bl_y = b[0][arr[-1]]
 
-    # marking the corner points of the contour in our img
-    cv2.circle(img, (br_x, br_y), 5, (0, 0, 255), -1)
-    cv2.circle(img, (bl_x, bl_y), 5, (0, 0, 255), -1)
-    cv2.circle(img, (tr_x, tr_y), 5, (0, 0, 255), -1)
-    cv2.circle(img, (tl_x, tl_y), 5, (0, 0, 255), -1)
+
 
     # calculating the size of the sudoku in original image
     height_new = max(bl_y - tl_y, br_y - tr_y)
