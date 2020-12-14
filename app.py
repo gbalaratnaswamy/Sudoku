@@ -1,11 +1,9 @@
 # sudoku solver
 #
+import cv2
 print("""
 ############################################################################
                         sudoku solver
 ############################################################################""")
-value ={
-    "0" : [1,2,3,5]
-}
-value["0"].pop(0)
-print(value["0"])
+path = input("enter image path : ")
+sudoku_img =cv2.imread(path)

@@ -1,4 +1,3 @@
-import cv2 as cv2
 import numpy as np
 
 
@@ -15,7 +14,7 @@ sudoku = np.array([[3, 0, 6, 5, 0, 8, 4, 0, 0],
                    [1, 3, 0, 0, 0, 0, 2, 5, 0],
                    [0, 0, 0, 0, 0, 0, 0, 7, 4],
                    [0, 0, 5, 2, 0, 6, 3, 0, 0]])
-count = 0
+count = 0;
 sudoku_solve = sudoku.copy()
 value = {}
 while count < 81:
